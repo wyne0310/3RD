@@ -3,66 +3,108 @@ body {
   background: #000;
   font-family: 'Georgia', serif;
   overflow: hidden;
+  position: relative;
 }
 
+/* Slideshow Container */
 .slideshow-container {
   position: relative;
   width: 100vw;
   height: 100vh;
 }
 
+/* Slides */
 .slide {
   position: absolute;
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 2s ease-in-out;
+  transition: opacity 6s ease-in-out;
 }
 
 .slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.9) contrast(1.1) saturate(0.85) sepia(0.2);
+  filter: brightness(0.6) contrast(1.1) saturate(0.60) sepia(0.2);
 }
 
-/* Show the active slide */
+/* Show active slide */
 .slide.active {
   opacity: 1;
-}
-
-/* Vintage overlay text */
-.overlay-text {
+}   
+.center-text {
   position: absolute;
-  bottom: 40px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-  animation: flicker 5s infinite;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: #FFB6C1;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  border-radius: 5px;
+  
+  /* Continuous popping animation */
+  animation: continuousPop 5s ease-in-out infinite;
 }
 
-/* Film flicker effect */
-@keyframes flicker {
-  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+/* Continuous popping animation */
+@keyframes continuousPop {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -40%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* Emoji Pop */
+.emoji {
+  position: absolute;
+  font-size: 2rem;
+  animation: pop 3s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0);
     opacity: 1;
   }
-  20%, 22%, 24%, 55% {
-    opacity: 0.8;
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
   }
-}
-
-/* Optional grain effect */
-body::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
-  opacity: 0.08;
-  pointer-events: none;
-  z-index: 2;
+  100% {
+    transform: scale(2);
+    opacity: 0;
+    top: -50px;
+  }
 }

@@ -13,4 +13,30 @@ function nextSlide() {
 }
 
 showSlide(currentSlide);
-setInterval(nextSlide, 4000); // Change every 5 seconds
+setInterval(nextSlide, 4000);
+
+// Emoji Pop Animation
+const emojis = [
+  "❤️", "🧡", "💛", "💚", "💙", "💜", "🖤", "🤍", "🤎",
+  "💖", "💗", "💓", "💞", "💕", "❣️", "💘", "💝",
+  "💐", "🌸", "🌼", "🌻", "🌹", "🌺", "🌷", "🪷", 
+  "🏵️", "🍀", "🍃", "🍂", "🍁"];
+
+const body = document.body;
+
+function createEmoji() {
+  const emoji = document.createElement("div");
+  emoji.classList.add("emoji");
+  emoji.style.left = Math.random() * 100 + "vw";
+  emoji.style.top = Math.random() * 100 + "vh";
+  emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+  
+  body.appendChild(emoji);
+
+  setTimeout(() => {
+    emoji.remove();
+  }, 3000); // match pop animation duration
+}
+
+// Create a popping emoji every 700ms
+setInterval(createEmoji, 700);
