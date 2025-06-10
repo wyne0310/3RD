@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Georgia', serif;
+  overflow: hidden;
+}
+
+.slideshow-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.9) contrast(1.1) saturate(0.85) sepia(0.2);
+}
+
+/* Show the active slide */
+.slide.active {
+  opacity: 1;
+}
+
+/* Vintage overlay text */
+.overlay-text {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+  animation: flicker 5s infinite;
+}
+
+/* Film flicker effect */
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.8;
+  }
+}
+
+/* Optional grain effect */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png');
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 2;
+}
